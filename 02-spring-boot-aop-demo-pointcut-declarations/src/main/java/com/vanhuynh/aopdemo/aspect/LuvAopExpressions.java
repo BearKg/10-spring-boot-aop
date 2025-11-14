@@ -2,18 +2,20 @@ package com.vanhuynh.aopdemo.aspect;
 
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
+import org.springframework.stereotype.Component;
 
 @Aspect
+@Component
 public class LuvAopExpressions {
     @Pointcut("execution(* com.vanhuynh.aopdemo.dao.*.*(..))")
     public void forDaoPackage() {}
 
     // create pointcut for getter method
-    @Pointcut("execution(* com.luv2code.aopdemo.dao.*.get*(..)")
+    @Pointcut("execution(* com.luv2code.aopdemo.dao.*.get*(..))")
     public void getter() {}
 
     // create pointcut for setter method
-    @Pointcut("execution(* com.luv2code.aopdemo.dao.*.set*(..)")
+    @Pointcut("execution(* com.luv2code.aopdemo.dao.*.set*(..))")
     public void setter() {}
 
     // create pointcut for getter methods:
