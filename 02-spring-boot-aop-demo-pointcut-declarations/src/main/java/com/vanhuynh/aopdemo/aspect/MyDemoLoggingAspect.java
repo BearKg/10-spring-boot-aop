@@ -26,13 +26,21 @@ public class MyDemoLoggingAspect {
         // get begin timestamp
         long begin = System.currentTimeMillis();
         // now, let's execute the method
-        Object result = theProceedingJoinPoint.proceed();
+        Object result = null;
+        try {
+            result =  theProceedingJoinPoint.proceed();
+        } catch (Exception exc) {
+            // handle exception to hide error
+            System.out.println(exc.getMessage());
+
+            result = "Major accident! But no worries, your private AOP helicopter is on the way!";
+        }
         // get end timestamp
         long end = System.currentTimeMillis();
         // compute duration and display it
         long duration = end - begin;
         System.out.println("\n==========>>> Duration: "+ duration / 1000.0 + " seconds");
-        return null;
+        return result;
     }
 
     @After("execution (* com.vanhuynh.aopdemo.dao.AccountDAO.findAccounts(..))")
